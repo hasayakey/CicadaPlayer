@@ -6,6 +6,7 @@
 extern "C" {
 #include <libavformat/avformat.h>
 #include <libavutil/opt.h>
+#include <libavcodec/avcodec.h>
 };
 
 #include <utils/AFUtils.h>
@@ -100,7 +101,7 @@ namespace Cicada {
                                      const DrmInfo *drmInfo)
     {
         auto codecId = (enum AVCodecID) CodecID2AVCodecID(meta->codec);
-        mPDecoder->codec = avcodec_find_decoder(codecId);
+        mPDecoder->codec = (AVCodec *)avcodec_find_decoder(codecId);
         bool isAudio = meta->channels > 0;
 
         if (mPDecoder->codec == nullptr) {
@@ -192,7 +193,7 @@ namespace Cicada {
 #ifdef ENABLE_HWDECODER
         mPDecoder->hwDeviceType_set = CICADA_HWDEVICE_TYPE_UNKNOWN;
 #endif
-        avcodec_register_all();
+//        avcodec_register_all();
         mFlags |= DECFLAG_PASSTHROUGH_INFO;
     }
 
@@ -290,14 +291,14 @@ namespace Cicada {
 
         if (pkt){
             AVDictionary *dict = nullptr;
-            int size = 0;
+            size_t size = 0;
             av_dict_set_int(&dict,"timePosition",pPacket->getInfo().timePosition,0);
             av_dict_set_int(&dict,"utcTime",pPacket->getInfo().utcTime,0);
             uint8_t *metadata = av_packet_pack_dictionary(dict, &size);
             av_dict_free(&dict);
 
             if (pPacket->getInfo().extra_data_size > 0) {
-                int new_extradata_size;
+                size_t new_extradata_size;
                 const uint8_t *new_extradata = av_packet_get_side_data(pkt, AV_PKT_DATA_NEW_EXTRADATA, &new_extradata_size);
                 if (new_extradata == nullptr) {
                     uint8_t *side = av_packet_new_side_data(pkt, AV_PKT_DATA_NEW_EXTRADATA, pPacket->getInfo().extra_data_size);

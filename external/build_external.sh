@@ -73,22 +73,22 @@ function load_source() {
         done
     fi
 
-    if [[ ${FFMPEG_NEED_PATCH} == "TRUE" ]];then
-        patch_ffmpeg
-    fi
+    # if [[ ${FFMPEG_NEED_PATCH} == "TRUE" ]];then
+    #     patch_ffmpeg
+    # fi
 
-    if [[ -d ${LIBXML2_SOURCE_DIR} ]];then
-        cd ${LIBXML2_SOURCE_DIR}
-        git_am_patch ../../contribute/libxml2/0001-disable-check-libtool.patch
-    fi
+    # if [[ -d ${LIBXML2_SOURCE_DIR} ]];then
+    #     cd ${LIBXML2_SOURCE_DIR}
+    #     git_am_patch ../../contribute/libxml2/0001-disable-check-libtool.patch
+    # fi
 
-    if [[ -d ${OPEN_SSL_SOURCE_DIR} ]];then
-        patch_openssl
-    fi
+    # if [[ -d ${OPEN_SSL_SOURCE_DIR} ]];then
+    #     patch_openssl
+    # fi
 
-    if [[ -d ${CURL_SOURCE_DIR} ]];then
-        patch_curl
-    fi
+    # if [[ -d ${CURL_SOURCE_DIR} ]];then
+    #     patch_curl
+    # fi
     return 0;
 }
 

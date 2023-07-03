@@ -126,7 +126,7 @@ void FfmpegMuxer::insertStreamInfo(const AVStream *st, const Stream_meta *meta)
         return;
     }
 
-    AVOutputFormat *fmt = mDestFormatContext->oformat;
+    const struct AVOutputFormat *fmt = mDestFormatContext->oformat;
     AVRational timeBase{};
 
     if (!strncmp(fmt->name, "flv", 3)) {

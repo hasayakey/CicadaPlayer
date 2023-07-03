@@ -32,6 +32,8 @@ bool CicadaRenderCBWrapper::OnRenderFrame(void *userData, IAFFrame *frame)
                 default:
                     break;
             }
+        } else if ((frame->getType() == IAFFrame::FrameTypeAudio)) {
+            
         }
 
         return false;

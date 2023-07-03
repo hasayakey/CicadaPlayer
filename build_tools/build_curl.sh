@@ -38,7 +38,7 @@ function build_curl(){
         export LDFLAGS="-arch $2 --sysroot=$SYSROOT"
         export CC=clang
         if [[ "${SSL_USE_NATIVE}" == "TRUE" ]];then
-            ssl_opt="--with-darwinssl"
+            ssl_opt="--with-secure-transport"
         fi
     elif [[ "$1" == "win32" ]];then
         cross_compile_set_platform_win32 $2
@@ -46,7 +46,7 @@ function build_curl(){
     elif [[ "$1" == "Darwin" ]];then
         LIBSDEPEND="LIBS=-lresolv"
         if [[ "${SSL_USE_NATIVE}" == "TRUE" ]];then
-            ssl_opt="--with-darwinssl"
+            ssl_opt="--with-secure-transport"
         fi
         print_warning "native build curl for $1 $2"
         native_compile_set_platform_macOS $2
@@ -57,7 +57,7 @@ function build_curl(){
     elif [ "$1" == "maccatalyst" ];then
         LIBSDEPEND="LIBS=-lresolv"
         if [[ "${SSL_USE_NATIVE}" == "TRUE" ]];then
-            ssl_opt="--with-darwinssl"
+            ssl_opt="--with-secure-transport"
         fi
         cross_compile_set_platform_maccatalyst "$2"
         export CFLAGS="${CPU_FLAGS}"

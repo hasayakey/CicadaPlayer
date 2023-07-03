@@ -148,6 +148,9 @@ function build_shared_framework(){
 
 iOS_check_env.sh
 
+SSL_USE_NATIVE="TRUE"
+CRYPTO_USE_OPENSSL="FALSE"
+
 build_libs iOS "${IOS_ARCHS}"
 build_fat_libs
 if [[ "${BUILD_SHARED_LIB}" == "FALSE" ]];then

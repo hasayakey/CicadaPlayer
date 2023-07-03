@@ -63,6 +63,7 @@ function build_static_lib(){
     if [[ "$1" == "iOS" ]] || [[ "$1" == "Darwin" ]] || [[ "$1" == "maccatalyst" ]];then
         if [[ "${SSL_USE_NATIVE}" == "TRUE" ]] && [[ "$CRYPTO_USE_OPENSSL" != "TRUE" ]];then
             build_openssl="false"
+            echo "不编译openssl"
         fi
     fi
 
@@ -87,8 +88,10 @@ function build_static_lib(){
             exit -1
         fi
     else
-        print_warning "RTMPDUM source not found"
+        print_warning "librtmp source not found"
     fi
+
+    echo "build_nghttp2 build begin"
 
     if [[ -d "$NGHTTP2_SOURCE_DIR" ]];then
 
@@ -100,6 +103,8 @@ function build_static_lib(){
 
     fi
 
+    echo "build_curl build begin"
+
     if [[ -d "${CURL_SOURCE_DIR}" ]];then
         build_curl $1 ${arch}
         if [[ $? -ne 0 ]]; then
@@ -107,8 +112,11 @@ function build_static_lib(){
             exit -1
         fi
     else
-        print_warning "openssl source not found"
+        print_warning "curl source not found"
     fi
+
+    echo "build_fdk_aac build begin"
+
     if [[ -d "${FDK_AAC_SOURCE_DIR}" ]]
     then
         build_fdk_aac $1 ${arch}
