@@ -114,11 +114,13 @@ static NSString * const tableViewCellIdentifier = @"UITableViewCell";
             addSwitch.tag = kContentView0PreTag1 + i;
             addSwitch.center = CGPointMake(selfWidth/switchTitleArray.count/2 * (2*i+1), 30);
             [addSwitch addTarget:self action:@selector(switchDidChange:) forControlEvents:UIControlEventValueChanged];
-            if (i == 1) {
+            if (i == 0) {
+                addSwitch.on = YES;
+            } else if (i == 1) {
                 self.muteSwitch = addSwitch;
             }else if (i == 3) {
                 addSwitch.on = YES;
-                addSwitch.userInteractionEnabled = NO;
+//                addSwitch.userInteractionEnabled = NO;
                 self.hardwareDecoderSwitch = addSwitch;
             }else if (i == 4) {
                 self.accurateSeekSwitch = addSwitch;

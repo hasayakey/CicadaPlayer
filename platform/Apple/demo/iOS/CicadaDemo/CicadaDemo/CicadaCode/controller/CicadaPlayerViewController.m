@@ -130,10 +130,11 @@
     self.player.playerView = self.CicadaView.playerView;
     self.player.delegate = self;
     //enable to test render delegate
-//    self.player.renderDelegate = self;
+    self.player.autoPlay = YES;
+    self.player.renderDelegate = self;
     self.player.scalingMode = CICADA_SCALINGMODE_SCALEASPECTFIT;
     [self.settingAndConfigView setVolume:self.player.volume/2];
-    [self setConfig];
+//    [self setConfig];
 
 #if !TARGET_OS_MACCATALYST
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationDidChangeFunc) name:UIDeviceOrientationDidChangeNotification object:nil];
@@ -863,9 +864,9 @@ tableview点击外挂字幕回调
 - (BOOL)setCategory:(NSString *)category withOptions:(AVAudioSessionCategoryOptions)options error:(NSError **)outError
 {
 //    self.enableMix = YES;
-    if (self.enableMix) {
-        options = AVAudioSessionCategoryOptionMixWithOthers | AVAudioSessionCategoryOptionDuckOthers;
-    }
+//    if (self.enableMix) {
+        options = AVAudioSessionCategoryOptionMixWithOthers | AVAudioSessionCategoryOptionDuckOthers | AVAudioSessionCategoryOptionAllowBluetooth | AVAudioSessionCategoryOptionAllowBluetoothA2DP;
+//    }
     return [[AVAudioSession sharedInstance] setCategory:category withOptions:options error:outError];
 }
 
@@ -883,7 +884,7 @@ tableview点击外挂字幕回调
 
 - (BOOL)onVideoPixelBuffer:(CVPixelBufferRef)pixelBuffer pts:(int64_t)pts
 {
-    NSLog(@"receive HW frame:%p pts:%lld", pixelBuffer, pts);
+//    NSLog(@"receive HW frame:%p pts:%lld", pixelBuffer, pts);
     return NO;
 }
 
