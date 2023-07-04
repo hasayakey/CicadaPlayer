@@ -63,9 +63,10 @@ function build_static_lib(){
     if [[ "$1" == "iOS" ]] || [[ "$1" == "Darwin" ]] || [[ "$1" == "maccatalyst" ]];then
         if [[ "${SSL_USE_NATIVE}" == "TRUE" ]] && [[ "$CRYPTO_USE_OPENSSL" != "TRUE" ]];then
             build_openssl="false"
-            echo "不编译openssl"
         fi
     fi
+
+    echo "build_openssl build begin"
 
     if [[ -d "${OPEN_SSL_SOURCE_DIR}" ]] && [[ "${build_openssl}" == "true" ]];then
         if [[  "${OPENSSL_VERSION_111}" == "True" ]];then
@@ -80,6 +81,8 @@ function build_static_lib(){
     else
         print_warning "openssl source not found"
     fi
+
+    echo "build_librtmp build begin"
 
     if [[ -d "$RTMPDUMP_SOURCE_DIR" ]];then
         build_librtmp $1 ${arch}

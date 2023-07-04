@@ -14,7 +14,7 @@ namespace Cicada {
     typedef struct parserContent_t {
 
         AVCodecParserContext *parser;
-        const AVCodec *codec;
+        AVCodec *codec;
         AVCodecContext *c;
         AVPacket out_pkt;
         enum AFCodecID mId;

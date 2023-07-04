@@ -39,7 +39,7 @@ ffmpeg_disable_all_config="--disable-everything \
   --disable-hwaccels \
   --disable-bzlib    \
   --disable-videotoolbox"
-ffmpeg_config_default="--enable-pic"
+ffmpeg_config_default="--enable-avresample --enable-pic"
 
 ffmpeg_config_debug="--disable-optimizations \
   --disable-asm \

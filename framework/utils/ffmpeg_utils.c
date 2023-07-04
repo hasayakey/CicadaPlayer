@@ -54,34 +54,34 @@ static void destroy_mutex(pthread_mutex_t **pMute)
     *pMute = NULL;
 }
 
-//static int lockmgr(void **mtx, enum AVLockOp op)
-//{
-//    switch (op) {
-//        case AV_LOCK_CREATE:
-//            *mtx = creat_mutex();
-//
-//            if (!*mtx) {
-//                return 1;
-//            }
-//
-//            return 0;
-//
-//        case AV_LOCK_OBTAIN:
-//            return lock_mutex(*mtx) != 0;
-//
-//        case AV_LOCK_RELEASE:
-//            return unlock_mutex(*mtx) != 0;
-//
-//        case AV_LOCK_DESTROY:
-//            destroy_mutex((pthread_mutex_t **) mtx);
-//            return 0;
-//
-//        default:
-//            break;
-//    }
-//
-//    return 1;
-//}
+static int lockmgr(void **mtx, enum AVLockOp op)
+{
+    switch (op) {
+        case AV_LOCK_CREATE:
+            *mtx = creat_mutex();
+
+            if (!*mtx) {
+                return 1;
+            }
+
+            return 0;
+
+        case AV_LOCK_OBTAIN:
+            return lock_mutex(*mtx) != 0;
+
+        case AV_LOCK_RELEASE:
+            return unlock_mutex(*mtx) != 0;
+
+        case AV_LOCK_DESTROY:
+            destroy_mutex((pthread_mutex_t **) mtx);
+            return 0;
+
+        default:
+            break;
+    }
+
+    return 1;
+}
 
 static void ffmpeg_log_back(void *ptr, int level, const char *fmt, va_list vl)
 {
@@ -101,10 +101,10 @@ static void ffmpeg_log_back(void *ptr, int level, const char *fmt, va_list vl)
 static void ffmpeg_init_once()
 {
     AF_LOGI("Ffmpeg version %s", av_version_info());
-//    av_lockmgr_register(lockmgr);
+    av_lockmgr_register(lockmgr);
     av_log_set_level(AV_LOG_INFO);
     av_log_set_callback(ffmpeg_log_back);
-//    av_register_all();
+    av_register_all();
     avformat_network_init();
 }
 
@@ -116,7 +116,7 @@ void ffmpeg_init()
 
 void ffmpeg_deinit()
 {
-//    av_lockmgr_register(NULL);
+    av_lockmgr_register(NULL);
     avformat_network_deinit();
 }
 
