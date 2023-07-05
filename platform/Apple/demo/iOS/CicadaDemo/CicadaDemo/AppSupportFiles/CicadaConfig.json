@@ -1,8 +1,8 @@
 {
-    "maxDelayTime": "1000",
-    "highBufferDuration": "500",
-    "startBufferDuration": "500",
-    "maxBufferDuration": "1000",
+    "maxDelayTime": "600",
+    "highBufferDuration": "300",
+    "startBufferDuration": "300",
+    "maxBufferDuration": "600",
     "networkTimeout": "15000",
     "referer": "",
     "httpProxy": "",

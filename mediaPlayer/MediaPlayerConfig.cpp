@@ -12,10 +12,10 @@ namespace Cicada {
         userAgent = "";
         networkTimeout = 15000;
         networkRetryCount = 2;
-        maxDelayTime = 5000;
-        maxBufferDuration = 50000;
-        highBufferDuration = 3000;
-        startBufferDuration = 500;
+        maxDelayTime = 600;
+        maxBufferDuration = 600;
+        highBufferDuration = 300;
+        startBufferDuration = 300;
         bClearShowWhenStop = false;
         bEnableTunnelRender = false;
         pixelBufferOutputFormat = 0;

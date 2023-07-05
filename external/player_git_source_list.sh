@@ -12,7 +12,7 @@ if [[ -z "${FFMPEG_GIT}" ]];then
     FFMPEG_GIT=https://github.com/FFmpeg/FFmpeg.git
 fi
 if [[ -z "${FFMPEG_BRANCH}" ]];then
-    FFMPEG_BRANCH=n4.4.4
+    FFMPEG_BRANCH=n4.3.6
 fi
 
 if [[ -z "${FFMPEG_NEED_PATCH}" ]];then

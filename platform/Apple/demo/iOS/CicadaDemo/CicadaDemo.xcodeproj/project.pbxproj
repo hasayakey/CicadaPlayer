@@ -126,7 +126,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 1F7561AD2369505B001A5B1E /* CicadaPlayerSDK.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 61E75EBC5F7943FA8E6977E8;
+			remoteGlobalIDString = 71EE571AAB7B4E7E9DE77514;
 			remoteInfo = install;
 		};
 		9E76DA7E23BA1424007C2D2B /* PBXContainerItemProxy */ = {
@@ -508,6 +508,7 @@
 				18FCB28B21D6126A00289843 /* Frameworks */,
 				18FCB28C21D6126A00289843 /* Resources */,
 				18818E3D225614B000E20011 /* Embed Frameworks */,
+				04480C272A53C0BB0063E63C /* Remove XCInstall Dir */,
 			);
 			buildRules = (
 			);
@@ -711,6 +712,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		04480C272A53C0BB0063E63C /* Remove XCInstall Dir */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Remove XCInstall Dir";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "rm -rf ${TARGET_BUILD_DIR}/.XCInstall\necho ${TARGET_BUILD_DIR}/.XCInstall\necho \"删除缓存\"\n";
+		};
 		E9D084FFFA6DCB9CAF4823D1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
